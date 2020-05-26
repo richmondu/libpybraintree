@@ -55,7 +55,7 @@ Their web app console is far better and more useful compared to Paypal.
 7. Backend creates 2 subscriptions pointing to the same plan (using the NONCE)
    - 1 for the prorated current month, same plan but with discount, used discounts to subtract the prorated_amount = plan_amt - plan_amt*(total_days-remaining_days)/total_days
    - succeeding recurring months
-   - Paypal - use setup_fee for prorated month; Braintree - use another subscription 
+   - Paypal - use setup_fee for prorated month; Braintree - use another subscription for prorated month
 
 
 
