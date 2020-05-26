@@ -53,9 +53,31 @@ Their web app console is far better and more useful compared to Paypal.
 6. Frontend passes NONCE to backend (together with payer details)
 
 7. Backend creates 2 subscriptions pointing to the same plan (using the NONCE)
-   - 1 for the prorated current month, same plan but with discount, used discounts to subtract the prorated_amount = plan_amt - plan_amt*(total_days-remaining_days)/total_days
-   - succeeding recurring months
-   - Paypal - use setup_fee for prorated month; Braintree - use another subscription for prorated month
+   -  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
+      same plan but with discount, used discounts to subtract the prorated_amount = plan_amt - plan_amt*(total_days-remaining_days)/total_days
+   -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
+   
+   - For Paypal, we use <b>setup_fee for prorated month</b>
+   - For Braintree, we use <b>another subscription for prorated month</b>
+
+
+
+### Backend/Frontend Changes:
+
+To transition from Paypal library to Braintree library, most of the changes are in the backend.
+
+For the frontend, the only risk is integrating the Braintree DropIn UI.
+How easy or difficult it is to integrate Braintree DropIn UI in Android or IOS apps is the major concern.
+For web app, its really simple as in copy-paste.
+
+Braintree changes in the frontend:
+1. Frontend needs to add some Braintree DropIn UI, to display the various payment options and direct the user to corresponding payment page.
+   - https://developers.braintreepayments.com/start/hello-client/android/v3 
+   - https://developers.braintreepayments.com/start/hello-client/ios/v4
+2. For Braintree, we retrieve client_token instead of approval url.
+   - Paypal - approval url, payment id; Braintree - client_token
+3. Then once user completes the payment, frontend sends NONCE string instead of payerID
+   - Paypal - payer id, payment id; Braintree - nonce
 
 
 
