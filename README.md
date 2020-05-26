@@ -24,9 +24,9 @@ Moreover, Braintree support <b>different payment methods</b> including Paypal, A
 4. Run braintee_manager.bat
 -  This will open up a Google Chrome browser running index.html and run braintree_manager.py application
 
-5. Note: When a customer buys a plan for a device, 2 BrainTree subscriptions are created both pointing to one of the 3 plans above:
--  1 for the prorated current month , charged immediately, same plan but with discount based on the remaining days of the month
--  1 for succeeding recurring months, charged every 1st day of the month
+5. Note: When a customer buys a plan for a device, <b>2 BrainTree subscriptions are created</b> both pointing to one of the 3 plans above:
+-  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
+-  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
 
 
 
