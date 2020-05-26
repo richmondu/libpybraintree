@@ -7,7 +7,8 @@ That repository demonstrates how to use the Paypal Python SDK for both normal pa
 
 Using <b>Braintree</b> library is easier than Paypal library itself. Braintree is a lot more developer-friendly.
 Moreover, Braintree support <b>different payment methods</b> including Paypal, Apple Pay, Google Pay, thus making your web/mobile payment system more robust.
-
+For recurring payments feature, it supports seating plans, provisioning for discounts/addons, dashboard metrics, etc.
+Their web app is far better and more useful compared to Paypal.
 
 
 ### Instructions:
