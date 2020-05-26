@@ -14,12 +14,12 @@ Their web app console is far better and more useful compared to Paypal.
 
 ### Basic Flow:
 
-0. Frontend uses Drop-in UI (copy paste code for UI) provided by BrainTree
+0. Frontend uses <b>Drop-in UI</b> (copy paste code for UI) provided by BrainTree
    - https://developers.braintreepayments.com/start/hello-client/javascript/v3
    - https://developers.braintreepayments.com/start/hello-client/android/v3
    - https://developers.braintreepayments.com/start/hello-client/ios/v4
 
-1. Frontend gets client_token authorization from backend
+1. Frontend gets <b>client_token authorization</b> from backend
    - Paypal - approval url; Braintree - client_token 
 
 2. Backend retrieves client_token authorization from BrainTree and returns it to frontend
@@ -28,7 +28,7 @@ Their web app console is far better and more useful compared to Paypal.
 
 4. Customer approves payment
 
-5. Frontend retrieves a NONCE from the dropin UI 
+5. Frontend retrieves a <b>NONCE from the dropin UI</b>
    - Paypal - payer ID; Braintree - nonce
 
 6. Frontend passes NONCE to backend (together with payer details)
