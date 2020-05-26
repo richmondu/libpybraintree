@@ -31,7 +31,7 @@ class braintree_client:
 			remaining_days, total_days = self._get_remaining_days()
 			discounted_amount, prorated_amount = self._get_discounted_amount(PLAN_AMOUNT, remaining_days, total_days)
 
-			result = self._create_subscription(PLAN, payment_method_token, discounted_amount)
+			result = self._create_subscription(PLAN, payment_method_token, discounted_amount, prorated_amount)
 			if not result:
 				print("_create_subscription failed!")
 				return False, ""
@@ -50,14 +50,23 @@ class braintree_client:
 		print()
 		return True, display
 
-	def process_transaction_basic(self, AMOUNT, NONCE):
-		options = {
-			'amount': str(AMOUNT),
-			'payment_method_nonce': NONCE,
-			'options': {
-				"submit_for_settlement": True
+	def process_transaction_basic(self, AMOUNT, NONCE=None, TOKEN=None):
+		if NONCE:
+			options = {
+				'amount': str(AMOUNT),
+				'payment_method_nonce': NONCE,
+				'options': {
+					"submit_for_settlement": True
+				}
 			}
-		}
+		else:
+			options = {
+				'amount': str(AMOUNT),
+				'payment_method_token': TOKEN,
+				'options': {
+					"submit_for_settlement": True
+				}
+			}
 		result = self.gateway.transaction.sale(options)
 		if not result.is_success:
 			print("Failed")
@@ -96,7 +105,7 @@ class braintree_client:
 			return False, 'Cannot use a payment_method_nonce more than once.'
 		return True, result.payment_method.token
 
-	def _create_subscription(self, plan, payment_method_token, discounted_amount):
+	def _create_subscription(self, plan, payment_method_token, discounted_amount, prorated_amount):
 		print("Creating subscription...")
 		# succeeding recurrent months
 		result = self.gateway.subscription.create({
@@ -107,29 +116,34 @@ class braintree_client:
 			print(result)
 			return False
 
-		# current month prorated, charged immediately
-		# prorated_amount = plan_amt*(total_days-remaining_days)/total_days
-		# discounted_amount = plan_amount - prorated_amount
-		# plan_amount = plan_amount - discounted_amount
-		result = self.gateway.subscription.create({
-			'payment_method_token': payment_method_token, 
-			'plan_id': plan,
-			"options": {
-				"start_immediately": True # overwrite to 
-			},
-			'never_expires': False,
-			"number_of_billing_cycles": 1,
-			"discounts": {
-				"add": [
-					{
-						"inherited_from_id": "ProrationDiscount",
-						"amount": discounted_amount,
-						"never_expires": False,
-						"number_of_billing_cycles": 1
-					}
-				]
-			}
-		})
+		if False:
+			# process as a single transaction
+			self.process_transaction_basic(prorated_amount, TOKEN=payment_method_token)
+		else:
+			# current month prorated, charged immediately
+			# prorated_amount = plan_amt*(total_days-remaining_days)/total_days
+			# discounted_amount = plan_amount - prorated_amount
+			# plan_amount = plan_amount - discounted_amount
+			result = self.gateway.subscription.create({
+				'payment_method_token': payment_method_token, 
+				'plan_id': plan,
+				"options": {
+					"start_immediately": True # overwrite to 
+				},
+				'never_expires': False,
+				"number_of_billing_cycles": 1,
+				"discounts": {
+					"add": [
+						{
+							"inherited_from_id": "ProrationDiscount",
+							"amount": discounted_amount,
+							"never_expires": False,
+							"number_of_billing_cycles": 1
+						}
+					]
+				}
+			})
+
 		if not result.is_success:
 			print("Failed")
 			print(result)
