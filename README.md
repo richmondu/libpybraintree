@@ -1,6 +1,6 @@
 # libpybraintree
 
-libpybraintree demonstrates usage of Braintree's Python SDK for processing online payments including payment using Paypal.
+libpybraintree demonstrates usage of <b>Braintree's Python SDK</b> for processing online <b>recurring payments</b> including payment using Paypal.
 
 To use Paypal library directly, refer to https://github.com/richmondu/libpypaypal
 That repository demonstrates how to use the Paypal Python SDK for both normal payments and recurring payments.
