@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<h3>Recurrent payments demo for Paypal using Braintree</h3> 
+		<meta charset="utf-8">
+		<script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+		<script src="https://js.braintreegateway.com/web/3.62.1/js/data-collector.min.js"></script>
+		<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+	</head>
+
+	<body>
+
+		<p>Please select your plan:</p>
+		<form>
+			<input type="radio" name="plan" id="basic10"      value="Basic10" checked="checked">Basic Plan - 10 USD<br>
+			<input type="radio" name="plan" id="pro30"        value="Pro30">Pro Plan - 30 USD<br>
+			<input type="radio" name="plan" id="enterprise50" value="Enterprise50">Enterprise Plan -  50 USD<br>
+		</form>
+		<br>
+		<br>
+
+		<div id="dropin-container"></div>
+		<br>
+		<br>
+		<button id="submit-button">Request payment method</button>
+		<br>
+		<br>
+		<label id="text-amount"></label>
+
+		<script>
+			var server = "http://127.0.0.1:8000"
+			var button = document.querySelector('#submit-button');
+			var text = document.querySelector('#text-amount');
+
+			var xmlHttp = null;
+			GetToken(); 
+
+			function GetToken() {
+				xmlHttp = new XMLHttpRequest(); 
+				xmlHttp.onreadystatechange = ProcessPayment;
+				xmlHttp.open( "GET", server + "/client_token", true );
+				xmlHttp.send( null );
+			}
+
+			function ProcessPayment() {
+				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ) {
+					var result = JSON.parse(this.responseText);
+					//console.log(result.token);
+
+					braintree.dropin.create({
+						authorization: result.token,
+						container: '#dropin-container',
+						paypal: {
+							flow: 'vault'
+						}
+					}, function (createErr, instance) {
+
+						button.addEventListener('click', function () {
+							instance.requestPaymentMethod(function (err, payload) {
+								// Submit payload.nonce to your server
+								//console.log("NONCE: " + payload.nonce);
+								text.innerHTML = "";
+								console.log(payload);
+								
+								plan = null
+								if (document.getElementById('basic10').checked) {
+									plan = 'Basic10'
+								}
+								else if (document.getElementById('pro30').checked) {
+									plan = 'Pro30'
+								}
+								else if (document.getElementById('enterprise50').checked) {
+									plan = 'Enterprise50'
+								}
+								FinalizePayment(plan, payload.nonce, payload.details, payload.type)
+							});
+						});
+					});
+				}
+			}
+
+			function FinalizePayment(plan, nonce, details, type) {
+				xmlHttp = new XMLHttpRequest(); 
+				xmlHttp.onreadystatechange = DisplayResult;
+				xmlHttp.open( "POST", server + "/nonce");
+				xmlHttp.setRequestHeader("Content-Type", "application/json");
+				data = { 
+					"plan": plan, 
+					"nonce": nonce, 
+					"details": details, 
+					"type": type
+				}
+				xmlHttp.send(JSON.stringify(data));
+			}
+			
+			function DisplayResult() {
+				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ) {
+					var result = JSON.parse(this.responseText);
+					console.log(result.msg);
+					text.innerHTML = result.msg;
+				}
+			}
+		</script>
+	</body>
+
+</html>
