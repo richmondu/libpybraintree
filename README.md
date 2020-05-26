@@ -75,9 +75,11 @@ Braintree changes in the frontend:
    - https://developers.braintreepayments.com/start/hello-client/android/v3 
    - https://developers.braintreepayments.com/start/hello-client/ios/v4
 2. For Braintree, we retrieve client_token instead of approval url.
-   - Paypal - approval url, payment id; Braintree - client_token
+   - Paypal - approval url, payment id
+   - Braintree - client_token
 3. Then once user completes the payment, frontend sends NONCE string instead of payerID
-   - Paypal - payer id, payment id; Braintree - nonce
+   - Paypal - payer id, payment id
+   - Braintree - nonce
 
 
 
