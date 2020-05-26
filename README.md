@@ -11,25 +11,6 @@ For recurring payments feature, it supports seating plans, provisioning for disc
 Their web app console is far better and more useful compared to Paypal.
 
 
-### Instructions:
-
-1. Link BrainTree (sandbox) to the Paypal (sandbox) developer account
-   -  If you dont have a Paypal sandbox account yet, refer to https://github.com/richmondu/libpypaypal
-   -  The transaction histories will appear on both Braintree and Paypal accounts.
-
-2. Create plans in Braintree (Seating plan)
-   -  Ex. Basic10, Pro30, Enterprise50 
-
-3. Copy the Braintree configuration in braintree_config.py
-
-4. Run braintee_manager.bat
-   -  This will open up a Google Chrome browser running index.html and run braintree_manager.py application
-
-5. Note: When a customer buys a plan for a device, <b>2 BrainTree subscriptions are created</b> both pointing to one of the 3 plans above:
-   -  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
-   -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
-
-
 
 ### Basic Flow:
 
@@ -57,6 +38,8 @@ Their web app console is far better and more useful compared to Paypal.
       same plan but with discount, used discounts to subtract the prorated_amount = plan_amt - plan_amt*(total_days-remaining_days)/total_days
    -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
    
+   
+   <b>Computing the prorated month</b>
    - For Paypal, we use <b>setup_fee for prorated month</b>
    - For Braintree, we use <b>another subscription for prorated month</b>
 
@@ -80,6 +63,26 @@ Braintree changes in the frontend:
 3. Then once user completes the payment, frontend sends NONCE string instead of payerID
    - Paypal - payer id, payment id
    - Braintree - nonce
+
+
+
+### Instructions:
+
+1. Link BrainTree (sandbox) to the Paypal (sandbox) developer account
+   -  If you dont have a Paypal sandbox account yet, refer to https://github.com/richmondu/libpypaypal
+   -  The transaction histories will appear on both Braintree and Paypal accounts.
+
+2. Create plans in Braintree (Seating plan)
+   -  Ex. Basic10, Pro30, Enterprise50 
+
+3. Copy the Braintree configuration in braintree_config.py
+
+4. Run braintee_manager.bat
+   -  This will open up a Google Chrome browser running index.html and run braintree_manager.py application
+
+5. Note: When a customer buys a plan for a device, <b>2 BrainTree subscriptions are created</b> both pointing to one of the 3 plans above:
+   -  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
+   -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
 
 
 
