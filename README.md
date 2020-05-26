@@ -60,17 +60,17 @@ Moreover, Braintree support <b>different payment methods</b> including Paypal, A
 
 ### Screenshots
 
-<img src="./_images/braintree_paypal.png" width="1000"/>
+	<img src="./_images/braintree_paypal.png" width="1000"/>
 
-<img src="./_images/braintree_paypal_1.png" width="1000"/>
+	<img src="./_images/braintree_paypal_1.png" width="1000"/>
 
-<img src="./_images/braintree_paypal_2.png" width="1000"/>
+	<img src="./_images/braintree_paypal_2.png" width="1000"/>
 
-<img src="./_images/braintree_paypal_3.png" width="1000"/>
+	<img src="./_images/braintree_paypal_3.png" width="1000"/>
 
-<img src="./_images/braintree_paypal_4.png" width="1000"/>
+	<img src="./_images/braintree_paypal_4.png" width="1000"/>
 
-<img src="./_images/braintree_paypal_5.png" width="1000"/>
+	<img src="./_images/braintree_paypal_5.png" width="1000"/>
 
 
 
