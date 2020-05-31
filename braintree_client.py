@@ -116,7 +116,8 @@ class braintree_client:
 			print(result)
 			return False
 
-		if False:
+		# current prorated month
+		if True:
 			# process as a single transaction
 			self.process_transaction_basic(prorated_amount, TOKEN=payment_method_token)
 		else:
