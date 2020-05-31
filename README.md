@@ -32,15 +32,13 @@ That repository demonstrates how to use the Paypal Python SDK for both normal pa
 
 6. Frontend passes NONCE to backend (together with payer details)
 
-7. Backend creates 2 subscriptions pointing to the same plan (using the NONCE)
-   -  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
-      same plan but with discount, used discounts to subtract the prorated_amount = plan_amt - plan_amt*(total_days-remaining_days)/total_days
-   -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
-   
-   
+7. Backend creates 1 transaction and 1 subscription (using the NONCE)
+   -  <b>1 transaction for the prorated current month</b> , charged immediately, same plan but prorated based on the remaining days of the month
+   -  <b>1 subscription for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
+
    <b>Computing the prorated month</b>
    - For Paypal, we use <b>setup_fee for prorated month</b>
-   - For Braintree, we use <b>another subscription for prorated month</b>
+   - For Braintree, we use <b>transaction for prorated month</b>
 
 
 
@@ -79,9 +77,9 @@ Braintree changes in the frontend:
 4. Run braintee_manager.bat
    -  This will open up a Google Chrome browser running index.html and run braintree_manager.py application
 
-5. Note: When a customer buys a plan for a device, <b>2 BrainTree subscriptions are created</b> both pointing to one of the 3 plans above:
-   -  <b>1 for the prorated current month</b> , charged immediately, one cycle only, same plan but with discount based on the remaining days of the month
-   -  <b>1 for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
+5. Note: When a customer buys a plan for a device, <b>1 transaction and 1 subscription are created</b>
+   -  <b>1 transaction for the prorated current month</b> , charged immediately, same plan but prorated based on the remaining days of the month
+   -  <b>1 subscription for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
 
 
 
