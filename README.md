@@ -83,6 +83,45 @@ Braintree changes in the frontend:
 
 
 
+### How to test
+
+1. Download this repository
+
+2. Install requirements.txt (pip install -r requirements.txt)
+
+3. Add the following environment variables (or update braintree_config.py directly)
+   - BRAINTREE_MERCHANT_ID=
+   - BRAINTREE_PUBLIC_KEY=
+   - BRAINTREE_PRIVATE_KEY=
+
+4. Run braintree_manager.bat
+   - A console application will open
+   - A browser will open for index.html
+
+5. Click "Paypal button" then "Paypal Checkout" button
+   - This will open up sandbox.paypal.com
+
+6. On the window prompt, login using any of the Paypal CUSTOMER account (dev1.sg@brtchip.com)
+
+7. Approve the payment and click "Save and Continue".
+   - This will close the sandbox.paypal.com
+
+8. Click on "Complete payment"
+   - Once completed, "user subscribed successfully! X.YZ USD for current month, 10 USD (Plan Basic10) for succeeding months.
+
+9. Verify Paypal account
+   - Customer account - verify that X.YZ USD was charged (for current prorated month)
+   - Customer account - verify that recurring payment is schedule for 10 USD 
+   - Merchant account - verify that X.YZ USD was collected from dev1.sg@brtchip.com
+   - Merchant account - verify that recurring payment is schedule for 10 USD for dev1.sg@brtchip.com 
+
+10. Verify  Braintree account
+   - Verify under Transactions page that X.YZ USD was charged (for current prorated month)
+   - Verify under Subscriptions page that recurring payment is schedule for 10 USD for dev1.sg@brtchip.com for Basic10
+   - Verify under Vault page that customer dev1.sg@brtchip.com appears with the corresponding transaction and subscription
+
+
+
 ### Screenshots
 
 <img src="./_images/braintree_paypal.png" width="1000"/>
