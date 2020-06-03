@@ -125,7 +125,7 @@ Braintree changes in the frontend:
 
 # APIs
 
-Note: This is just simple set of APIs to demonstrate Paypal recurring payments using Braintree libraries
+Note: This is just a simple set of APIs to demonstrate Paypal recurring payments using Braintree libraries
 
 1. Get payment authorization token
    Request:
