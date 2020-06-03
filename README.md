@@ -128,16 +128,24 @@ Braintree changes in the frontend:
 Note: This is just a simple set of APIs to demonstrate Paypal recurring payments using Braintree libraries
 
 1. Get payment authorization token
+
    Request:
+
    - GET /client_token
    - headers: {'Content-Type': 'application/json'}
+
    Response:
+
    - {'status': 'OK', 'token': string}
+
    // This is used by frontend to redirect user to the Paypal page (or other payment) via the Braintree Dropin UI
+
    // Once the user approves the payment, Braintree will return a NONCE to the frontend
 
 2. Execute payment
+
    Request:
+
    - POST /nonce
    - headers: {'Content-Type': 'application/json'}
    - data: {
@@ -150,8 +158,11 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
          'lastName':  string,
        }
      }
+
    Response:
+
    - {'status': 'OK', 'msg': string}
+
    // The frontend shall use the NONCE in the call to execute payment, including the payment details (ex. plan id)
 
 
