@@ -188,6 +188,57 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
 
 
 
+# Shifting from Paypal library to Braintree library
+
+### BACKGROUND:
+
+We already decided that we will go for Braintree after release next month.
+
+The major reason to go with Braintree back then was support for 
+- upgrading/downgrading/cancellation of one or more subscriptions from a single transaction comprising of multiple subscriptions (CARTS).
+- The issue was that the Paypal Python SDK does not support this feature handling dependency issues
+- Later on we found out that Paypal supports this but only through direct HTTPS REST API calls.
+
+After familiarizing with Braintree, there are actually better reasons we should go with Braintree.
+- Not urgent for the current use-case, but makes system robust for future use-cases
+
+
+### WHY NOW?:
+
+Why not?
+
+1. We have created an end-to-end demo covering the necessary bases in using Braintree library for recurring payments
+- We know how Braintree works to solve current use-case (Paypal, recurring payments, discounts/promo) 
+- We have explored some of the future use-cases (carts concept) 
+  - multiple devices A, B, C, different subscription plans on single transaction
+  - user can upgrade device A, cancel device B, and downgrade device C
+
+2. Braintree library is easier than Paypal library in that it is very developer friendly
+- easy integration of Braintree account to link to a Paypal account 
+- the APIs are documented with working examples (for both backend and frontend)
+- has provisioning for subscription plans, discounts (promocode), addons, etc.
+- web console is well-designed with rich features (reports, metrics, alerts, etc)
+- dropin UIs are provided for IOS, Android and Javascript (for easy integration)
+
+3. Frontend integration should be smooth and easy
+- Mobile team was consulted on integrating the dropin UIs 
+  - 3/4 days estimates (Ajith used Braintree before already)
+- Similar round-trip transaction (parameter values change) 
+  - Frontend gets client_token authorization from backend (Paypal - approval url; Braintree - client_token) 
+  - Once customer approves the transaction, frontend sends a NONCE (Paypal - payer ID; Braintree - nonce) 
+
+4. Most of the payment/subscription issues have already been articulated and cleared up with the team and marketing team
+-  We don't expect any major issues going forward, atleast for July release
+
+5. Paypal Python library maintenance is no longer active
+- v1 library has been depracated
+  "This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted."
+- v2 libary is incomplete, does not support recurring payments
+  https://github.com/paypal/Checkout-Python-SDK/issues/25
+- Paypal basically wants developers to use the HTTPS REST APIs directly or via Braintree (a company they bought)
+
+
+
 # Resources:
 
 1. Braintree https://developers.braintreepayments.com/
