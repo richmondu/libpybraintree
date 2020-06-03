@@ -41,7 +41,7 @@ def get_client_token():
 #     }
 #   }
 # Response:
-#   {'status': 'OK', 'token': string}
+#   {'status': 'OK', 'msg': string}
 @app.route('/nonce', methods=['POST'])
 def process_transaction():
 	data = flask.request.get_json()
