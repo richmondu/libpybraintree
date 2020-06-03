@@ -50,6 +50,8 @@ def process_transaction():
 	if data["plan"] is None or data["nonce"] is None or data["type"] is None or data["details"] is None:
 		return json.dumps({'status': 'NG'})
 
+	print("\nnonce:\n{}\n".format(data["nonce"]))
+
 	PLAN, PLAN_AMOUNT = _get_plan_amount(data["plan"])
 	NONCE = data["nonce"]
 	TYPE = data["type"]
