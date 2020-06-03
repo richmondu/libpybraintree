@@ -33,7 +33,8 @@ That repository demonstrates how to use the Paypal Python SDK for both normal pa
 6. Frontend passes NONCE to backend (together with payer details)
 
 7. Backend creates the payment transaction and/or subscription to Braintree using NONCE
-   1 transaction and 1 subscription (using the NONCE) 
+
+   <b>1 transaction and 1 subscription</b>
    -  <b>1 transaction for the prorated current month</b> , charged immediately, same plan but prorated based on the remaining days of the month
    -  <b>1 subscription for succeeding recurring months</b>, charged every 1st day of the month, infinite cycle
 
