@@ -207,30 +207,30 @@ After familiarizing with Braintree, there are actually better reasons we should 
 
 Why not?
 
-1. We have created an end-to-end demo covering the necessary bases in using Braintree library for recurring payments
+1. We have created an <b>end-to-end demo covering the necessary bases for recurring payments</b> in using Braintree library 
 - We know how Braintree works to solve current use-case (Paypal, recurring payments, discounts/promo) 
 - We have explored some of the future use-cases (carts concept) 
   - multiple devices A, B, C, different subscription plans on single transaction
   - user can upgrade device A, cancel device B, and downgrade device C
 
-2. Braintree library is easier than Paypal library in that it is very developer friendly
+2. <b>Braintree library is very developer friendly</b> than Paypal 
 - easy integration of Braintree account to link to a Paypal account 
 - the APIs are documented with working examples (for both backend and frontend)
 - has provisioning for subscription plans, discounts (promocode), addons, etc.
 - web console is well-designed with rich features (reports, metrics, alerts, etc)
 - dropin UIs are provided for IOS, Android and Javascript (for easy integration)
 
-3. Frontend integration should be smooth and easy
+3. <b>Frontend integration should be easy</b>
 - Mobile team was consulted on integrating the dropin UIs 
   - 3/4 days estimates (Ajith used Braintree before already)
 - Similar round-trip transaction (parameter values change) 
   - Frontend gets client_token authorization from backend (Paypal - approval url; Braintree - client_token) 
   - Once customer approves the transaction, frontend sends a NONCE (Paypal - payer ID; Braintree - nonce) 
 
-4. Most of the payment/subscription issues have already been articulated and cleared up with the team and marketing team
+4. <b>Most of the payment/subscription issues have already been articulated</b> and cleared up with the team and marketing team
 -  We don't expect any major issues going forward, atleast for July release
 
-5. Paypal Python library maintenance is no longer active
+5. <b>Paypal Python library maintenance is no longer active</b>
 - v1 library has been depracated
   "This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted."
 - v2 libary is incomplete, does not support recurring payments
