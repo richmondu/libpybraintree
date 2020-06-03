@@ -208,10 +208,10 @@ After familiarizing with Braintree, there are actually better reasons we should 
 Why not?
 
 1. We have created an <b>end-to-end demo covering the necessary bases for recurring payments</b> in using Braintree library 
-- We know how Braintree works to solve current use-case (Paypal, recurring payments, discounts/promo) 
-- We have explored some of the future use-cases (carts concept) 
-  - multiple devices A, B, C, different subscription plans on single transaction
-  - user can upgrade device A, cancel device B, and downgrade device C
+   - We know how Braintree works to solve current use-case (Paypal, recurring payments, discounts/promo) 
+   - We have explored some of the future use-cases (carts concept) 
+     - multiple devices A, B, C, different subscription plans on single transaction
+     - user can upgrade device A, cancel device B, and downgrade device C
 
 2. <b>Braintree library is very developer friendly</b> than Paypal 
 - easy integration of Braintree account to link to a Paypal account 
