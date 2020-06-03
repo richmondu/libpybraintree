@@ -149,9 +149,13 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
    - POST /nonce
    - headers: {'Content-Type': 'application/json'}
    - data: {
+
        'plan':        string, // Subscription plan type Basic10, Pro30, Enterprise50
+
        'nonce':       string, // Nonce value returned by Braintree to Frontend
+
        'type':        string, // Payment method type - Paypal, CreditCard, Venmo, ApplePay, GooglePay, SamsungPay
+
        'details': {
          'email':     string,
          'firstName': string,
