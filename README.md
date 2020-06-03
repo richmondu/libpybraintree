@@ -221,21 +221,21 @@ Why not?
    - dropin UIs are provided for IOS, Android and Javascript (for easy integration)
 
 3. <b>Frontend integration should be easy</b>
-  - Mobile team was consulted on integrating the dropin UIs 
-    - 3/4 days estimates (Ajith used Braintree before already)
-  - Similar round-trip transaction (parameter values change) 
-    - Frontend gets client_token authorization from backend (Paypal - approval url; Braintree - client_token) 
-    - Once customer approves the transaction, frontend sends a NONCE (Paypal - payer ID; Braintree - nonce) 
+   - Mobile team was consulted on integrating the dropin UIs 
+     - 3/4 days estimates (Ajith used Braintree before already)
+   - Similar round-trip transaction (parameter values change) 
+     - Frontend gets client_token authorization from backend (Paypal - approval url; Braintree - client_token) 
+     - Once customer approves the transaction, frontend sends a NONCE (Paypal - payer ID; Braintree - nonce) 
 
 4. <b>Most of the payment/subscription issues have already been articulated</b> and cleared up with the team and marketing team
-  -  We don't expect any major issues going forward, atleast for July release
+   -  We don't expect any major issues going forward, atleast for July release
 
 5. <b>Paypal Python library maintenance is no longer active</b>
-  - v1 library has been depracated
-    - "This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted."
-  - v2 libary is incomplete, does not support recurring payments
-    - https://github.com/paypal/Checkout-Python-SDK/issues/25
-  - Paypal basically wants developers to use the HTTPS REST APIs directly or via Braintree (a company they bought)
+   - v1 library has been depracated
+     - "This SDK is deprecated. You can continue to use it, but no new features or support requests will be accepted."
+   - v2 libary is incomplete, does not support recurring payments
+     - https://github.com/paypal/Checkout-Python-SDK/issues/25
+   - Paypal basically wants developers to use the HTTPS REST APIs directly or via Braintree (a company they bought)
 
 
 
