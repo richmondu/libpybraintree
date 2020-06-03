@@ -11,7 +11,7 @@ To use Paypal library directly, refer to https://github.com/richmondu/libpypaypa
 That repository demonstrates how to use the Paypal Python SDK for both normal payments and recurring payments.
 
 
-### Basic Flow:
+# Basic Flow:
 
 0. Frontend uses <b>Drop-in UI</b> (copy paste code for UI) provided by BrainTree
    - https://developers.braintreepayments.com/start/hello-client/javascript/v3
@@ -43,7 +43,7 @@ That repository demonstrates how to use the Paypal Python SDK for both normal pa
 
 
 
-### Backend/Frontend Changes:
+# Backend/Frontend Changes:
 
 To transition from Paypal library to Braintree library, most of the changes are in the backend.
 
@@ -64,7 +64,7 @@ Braintree changes in the frontend:
 
 
 
-### Instructions:
+# Instructions:
 
 1. Link BrainTree (sandbox) to the Paypal (sandbox) developer account
    -  If you dont have a Paypal sandbox account yet, refer to https://github.com/richmondu/libpypaypal
@@ -84,7 +84,7 @@ Braintree changes in the frontend:
 
 
 
-### How to test
+# How to test
 
 1. Download this repository
 
@@ -123,7 +123,7 @@ Braintree changes in the frontend:
 
 
 
-### Screenshots
+# Screenshots
 
 <img src="./_images/braintree_paypal.png" width="1000"/>
 
@@ -139,7 +139,7 @@ Braintree changes in the frontend:
 
 
 
-### Resources:
+# Resources:
 
 1. Braintree https://www.braintreepayments.com/
 2. Braintree Paypal payment https://developers.braintreepayments.com/guides/paypal/overview
