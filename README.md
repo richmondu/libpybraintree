@@ -189,7 +189,7 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
 
 # Resources:
 
-1. Braintree https://www.braintreepayments.com/
+1. Braintree https://developers.braintreepayments.com/
 2. Braintree Paypal payment https://developers.braintreepayments.com/guides/paypal/overview
 3. Braintree recurring billing https://developers.braintreepayments.com/guides/recurring-billing/overview
 
