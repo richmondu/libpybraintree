@@ -123,6 +123,37 @@ Braintree changes in the frontend:
 
 
 
+# APIs
+
+1. Get payment authorization token
+   Request:
+   - GET /client_token
+   - headers: {'Content-Type': 'application/json'}
+   Response:
+   - {'status': 'OK', 'token': string}
+   // This is used by frontend to redirect user to the Paypal page (or other payment) via the Braintree Dropin UI
+   // Once the user approves the payment, Braintree will return a NONCE to the frontend
+
+2. Execute payment
+   Request:
+   - POST /nonce
+   - headers: {'Content-Type': 'application/json'}
+   - data: {
+       'plan':        string, // Subscription plan type Basic10, Pro30, Enterprise50
+       'nonce':       string, // Nonce value returned by Braintree to Frontend
+       'type':        string, // Payment method type - Paypal, CreditCard, Venmo, ApplePay, GooglePay, SamsungPay
+       'details': {
+         'email':     string,
+         'firstName': string,
+         'lastName':  string,
+       }
+     }
+   Response:
+   - {'status': 'OK', 'msg': string}
+   // The frontend shall use the NONCE in the call to execute payment, including the payment details (ex. plan id)
+
+
+
 # Screenshots
 
 <img src="./_images/braintree_paypal.png" width="1000"/>
