@@ -127,7 +127,7 @@ Braintree changes in the frontend:
 
 Note: This is just a simple set of APIs to demonstrate Paypal recurring payments using Braintree libraries
 
-1. Get payment authorization token
+1. <b>Get payment authorization token</b>
 
    Request:
 
@@ -142,7 +142,7 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
 
    // Once the user approves the payment, Braintree will return a NONCE to the frontend
 
-2. Execute payment
+2. <b>Execute payment</b>
 
    Request:
 
