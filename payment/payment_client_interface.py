@@ -1,62 +1,77 @@
-class PaymentClientInterface(object):
+from abc import abstractmethod
+
+class PaymentClientInterface():
 
 	'''
 	' plans
 	'''
+	@abstractmethod
 	def get_plans(self):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def display_plans(self):
-		pass
+		raise NotImplementedError
 
 	'''
 	' authentication
 	'''
+	@abstractmethod
 	def generate_client_token(self):
-		return None
+		raise NotImplementedError
 
 
 	'''
 	' customer
 	'''
+	@abstractmethod
 	def create_customer(self, customer_details):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def get_customer(self, customer_details):
-		return None
+		raise NotImplementedError
 
 
 	'''
 	' payment method
 	'''
+	@abstractmethod
 	def create_payment_method(self, customer_id, nonce):
-		return None
+		raise NotImplementedError
 
 
 	'''
 	' transaction
 	'''
+	@abstractmethod
 	def create_transaction_by_nonce(self, amount, nonce):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def create_transaction_by_token(self, amount, token):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def commit_transaction(self, tid):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def find_transaction(self, tid):
-		return None
+		raise NotImplementedError
 
 
 	'''
 	' subscription
 	'''
+	@abstractmethod
 	def create_subscription(self, plan, payment_method_token):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def update_subscription(self, sub_id, options):
-		return None
+		raise NotImplementedError
 
+	@abstractmethod
 	def cancel_subscription(self, sub_id):
-		return None
+		raise NotImplementedError

@@ -1,5 +1,4 @@
-import json
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from payment.app_init import payment_client
 
 
@@ -12,6 +11,6 @@ def get_client_token():
 
 	token = payment_client.generate_client_token()
 	print("\nclient_token:\n{}\n".format(token))
-	return json.dumps({'status': 'OK', 'token': token})
+	return jsonify(status='OK', token=token)
 
 
