@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from payment.app_init import payment_client
 from payment.blueprint_utils import PaymentUtils
+from api_logger import ApiLogger
 
 
 
@@ -8,6 +9,7 @@ blueprint_transaction = Blueprint('blueprint_transaction', __name__)
 
 # /payment/transaction/checkout
 @blueprint_transaction.route("/checkout", methods=['POST'])
+@ApiLogger.log
 def process_transaction():
 
 	data = request.get_json()
