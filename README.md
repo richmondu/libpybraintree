@@ -132,7 +132,7 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
 
    Request:
 
-   - GET /client_token
+   - GET /payment/authentication/client_token
    - headers: {'Content-Type': 'application/json'}
 
    Response:
@@ -147,7 +147,7 @@ Note: This is just a simple set of APIs to demonstrate Paypal recurring payments
 
    Request:
 
-   - POST /nonce
+   - POST /payment/transaction/checkout
    - headers: {'Content-Type': 'application/json'}
    - data: {
 

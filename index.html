@@ -38,7 +38,7 @@
 			function GetToken() {
 				xmlHttp = new XMLHttpRequest(); 
 				xmlHttp.onreadystatechange = ProcessPayment;
-				xmlHttp.open( "GET", server + "/client_token", true );
+				xmlHttp.open( "GET", server + "/payment/authentication/client_token", true );
 				xmlHttp.send( null );
 			}
 
@@ -56,9 +56,10 @@
 					}, function (createErr, instance) {
 
 						button.addEventListener('click', function () {
+							console.log("click: ");
 							instance.requestPaymentMethod(function (err, payload) {
 								// Submit payload.nonce to your server
-								//console.log("NONCE: " + payload.nonce);
+								console.log("NONCE: " + payload.nonce);
 								text.innerHTML = "";
 								console.log(payload);
 								
@@ -72,6 +73,7 @@
 								else if (document.getElementById('enterprise50').checked) {
 									plan = 'Enterprise50'
 								}
+								
 								FinalizePayment(plan, payload.nonce, payload.details, payload.type)
 							});
 						});
@@ -80,14 +82,15 @@
 			}
 
 			function FinalizePayment(plan, nonce, details, type) {
+				console.log("FinalizePayment");
 				xmlHttp = new XMLHttpRequest(); 
 				xmlHttp.onreadystatechange = DisplayResult;
-				xmlHttp.open( "POST", server + "/nonce");
+				xmlHttp.open( "POST", server + "/payment/transaction/checkout");
 				xmlHttp.setRequestHeader("Content-Type", "application/json");
 				data = { 
 					"plan": plan, 
 					"nonce": nonce, 
-					"details": details, 
+					"customer_details": details, 
 					"type": type
 				}
 				xmlHttp.send(JSON.stringify(data));
