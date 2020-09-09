@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "libpybraintree"
+host: "libpybraintree"
+basePath: "/api/v1"
+tags:
+- name: "payment"
+  description: "Initial POC for payment module"
+schemes:
+- "http"
+paths:
+  /payment/authentication/client_token:
+    get:
+      tags:
+      - "client_token"
+      summary: "Get client token"
+      description: "Get client token"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid status value"
+  /payment/transaction/checkout:
+    post:
+      tags:
+      - "checkout"
+      summary: "Checkout"
+      description: "Checkout"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "data"
+        description: "data"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            plan:
+              type: "string"
+            nonce:
+              type: "string"
+            customer_details:
+              type: "string"
+            type:
+              type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid status value"
